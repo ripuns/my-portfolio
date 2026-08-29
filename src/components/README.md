@@ -10,6 +10,9 @@ Separating UI components into isolated units ensures high maintainability, expli
 Components collaborate with `src/data/portfolioData.ts` for domain content and `src/lib/audio.ts` for Web Audio API feedback, managed through state machines in `src/app/page.tsx`.
 
 ## 4. File Responsibilities
+- `PitwallView.tsx`: Telemetry workstation interface presenting Skills (ICE, Aero, Backend, DevOps gauges) and Work Experience (E-Cell VIT pit stop performance logs, mentorship, +35% query speedup) in a high-density F1 timing data style, with a Return to Garage button.
+- `RacingTrackView.tsx`: 2D high-speed racing track perspective with moving road stripes and curbs. Presents Projects, Achievements, and Certifications as interactive track flashcards. Clicking a card pauses the car (0 KM/H) and displays full technical specifications on the front HUD, with a Return to Garage button.
+- `CockpitPOV.tsx`: Driver seat perspective inside the garage looking forward, featuring the centerpiece curved holographic navigation HUD with driver profile, education, and 6 primary destination triggers.
 - `RacingLightsOverlay.tsx`: Full-screen 2D entry animation with sequential 5-red-lights countdown, speed-wipe streak effects, and smooth dissolve transition into the driver cockpit.
 - `Navbar.tsx`: Telemetry header with driver status, live sector indicators, audio toggle, and fast sector jumps.
 - `Icons.tsx`: Lightweight, custom SVG icons for GitHub, LinkedIn, and motorsport symbols.
@@ -22,4 +25,3 @@ Components collaborate with `src/data/portfolioData.ts` for domain content and `
 - `TrackHUD.tsx`: Pinned 2D SVG race track map with real-time lap tracker.
 - `ExecutiveView.tsx`: Clean, high-density ATS-optimized printable resume layout.
 - `Footer.tsx`: Chequered flag finish banner and back-to-grid navigation.
-
