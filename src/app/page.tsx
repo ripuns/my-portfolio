@@ -1,77 +1,92 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Navbar } from "@/components/Navbar";
-import { TrackHUD } from "@/components/TrackHUD";
-import { HeroStartingGrid } from "@/components/HeroStartingGrid";
-import { Sector1Skills } from "@/components/Sector1Skills";
-import { Sector2Projects } from "@/components/Sector2Projects";
-import { Sector3Experience } from "@/components/Sector3Experience";
-import { PodiumAchievements } from "@/components/PodiumAchievements";
-import { PitWallContact } from "@/components/PitWallContact";
+import React, { useState } from "react";
+import { RacingLightsOverlay } from "@/components/RacingLightsOverlay";
+import { CockpitPOV } from "@/components/CockpitPOV";
+import { RacingTrackView } from "@/components/RacingTrackView";
+import { PitwallView } from "@/components/PitwallView";
+import { ContactModal } from "@/components/ContactModal";
 import { ExecutiveView } from "@/components/ExecutiveView";
-import { Footer } from "@/components/Footer";
 
 export default function Home() {
-  const [viewMode, setViewMode] = useState<"f1" | "recruiter">("f1");
-  const [activeSector, setActiveSector] = useState<string>("hero");
+  // Application POV View State Machine
+  const [showIntro, setShowIntro] = useState<boolean>(true);
+  const [currentView, setCurrentView] = useState<"garage" | "track" | "pitwall" | "executive">("garage");
+  const [trackCategory, setTrackCategory] = useState<"projects" | "achievements" | "certifications">("projects");
+  const [pitwallTab, setPitwallTab] = useState<"skills" | "experience">("skills");
+  const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (viewMode !== "f1") return;
+  // Navigation handlers
+  const handleNavigate = (view: "track" | "pitwall", section: string) => {
+    if (view === "track") {
+      setTrackCategory(section as "projects" | "achievements" | "certifications");
+      setCurrentView("track");
+    } else if (view === "pitwall") {
+      setPitwallTab(section as "skills" | "experience");
+      setCurrentView("pitwall");
+    }
+  };
 
-    const sections = ["hero", "sector1", "sector2", "sector3", "podium", "pitwall"];
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 250;
+  const handleReturnToGarage = () => {
+    setCurrentView("garage");
+  };
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSector(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [viewMode]);
+  const handleToggleExecutive = () => {
+    setCurrentView(currentView === "executive" ? "garage" : "executive");
+  };
 
   return (
-    <main className="relative min-h-screen bg-[#08090C] text-slate-100 selection:bg-[#E10600] selection:text-white">
-      {/* Top Telemetry Header */}
-      <Navbar
-        viewMode={viewMode}
-        setViewMode={setViewMode}
-        activeSector={activeSector}
+    <main className="relative min-h-screen bg-[#08090C] text-slate-100 selection:bg-[#E10600] selection:text-white overflow-x-hidden">
+      
+      {/* 1. Full-Screen 5-Red-Lights Overlay on Initial Entry */}
+      {showIntro && (
+        <RacingLightsOverlay onComplete={() => setShowIntro(false)} />
+      )}
+
+      {/* 2. Main View State Switching */}
+      {currentView === "garage" && (
+        <CockpitPOV
+          onNavigate={handleNavigate}
+          onOpenContact={() => setIsContactOpen(true)}
+          onToggleExecutive={handleToggleExecutive}
+        />
+      )}
+
+      {currentView === "track" && (
+        <RacingTrackView
+          category={trackCategory}
+          onReturnToGarage={handleReturnToGarage}
+        />
+      )}
+
+      {currentView === "pitwall" && (
+        <PitwallView
+          initialTab={pitwallTab}
+          onReturnToGarage={handleReturnToGarage}
+        />
+      )}
+
+      {currentView === "executive" && (
+        <div className="relative">
+          {/* Top Bar for Executive View with Return to Cockpit button */}
+          <div className="fixed top-4 left-4 z-50">
+            <button
+              onClick={handleReturnToGarage}
+              className="bg-[#E10600] hover:bg-[#FF1801] text-white px-4 py-2 rounded-xl text-xs font-racing font-bold tracking-wider shadow-xl transition-transform active:scale-95"
+            >
+              ➔ RETURN TO COCKPIT POV
+            </button>
+          </div>
+          <ExecutiveView />
+        </div>
+      )}
+
+      {/* 3. Global Accessible Contact Popup Modal */}
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
       />
 
-      {viewMode === "f1" ? (
-        <>
-          {/* Right Pinned 2D Race Circuit Scroll-Tracker */}
-          <TrackHUD activeSector={activeSector} />
-
-          {/* Main Race Telemetry Sections */}
-          <HeroStartingGrid />
-          <Sector1Skills />
-          <Sector2Projects />
-          <Sector3Experience />
-          <PodiumAchievements />
-          <PitWallContact />
-          <Footer />
-        </>
-      ) : (
-        <>
-          {/* Executive ATS-Optimized Clean View */}
-          <ExecutiveView />
-          <Footer />
-        </>
-      )}
     </main>
   );
 }
