@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --background: #08090C;
+  --foreground: #F8FAFC;
+  --f1-red: #E10600;
+  --f1-red-hover: #FF1801;
+  --f1-cyan: #00F5D4;
+  --f1-gold: #FFD166;
+  --f1-dark: #0D0E15;
+  --f1-card: #13141E;
+  --f1-border: #232536;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.font-racing {
+  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
+}
+
+.font-telemetry {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Carbon Fiber Pattern Background */
+.bg-carbon {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(225, 6, 0, 0.03) 0%, transparent 60%),
+    linear-gradient(27deg, #10111A 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #10111A 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #151622 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #151622 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #0A0B10 10px, transparent 10px),
+    linear-gradient(#0D0E15 25%, #08090C 25%, #08090C 50%, #0D0E15 50%, #0D0E15 75%, #08090C 75%, #08090C 100%);
+  background-size: 20px 20px;
+}
+
+/* F1 Curbs & Chequered Patterns */
+.curb-pattern {
+  background: repeating-linear-gradient(
+    -45deg,
+    #E10600,
+    #E10600 12px,
+    #FFFFFF 12px,
+    #FFFFFF 24px
+  );
+}
+
+.curb-pattern-subtle {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(225, 6, 0, 0.35),
+    rgba(225, 6, 0, 0.35) 8px,
+    rgba(255, 255, 255, 0.15) 8px,
+    rgba(255, 255, 255, 0.15) 16px
+  );
+}
+
+/* Scanline Overlay for Telemetry feel */
+.scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0, 245, 212, 0.02) 50%,
+    rgba(0, 245, 212, 0.02)
+  );
+  background-size: 100% 4px;
+}
+
+/* Glowing Neon Elements */
+.glow-red {
+  box-shadow: 0 0 25px rgba(225, 6, 0, 0.45);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.35);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 209, 102, 0.4);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E10600;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF1801;
+}
+
+/* Skew styling for motorsport badges */
+.skew-f1 {
+  transform: skewX(-12deg);
+}
+
+.unskew {
+  transform: skewX(12deg);
+}
