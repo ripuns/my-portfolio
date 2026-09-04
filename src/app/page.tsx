@@ -1,92 +1,116 @@
 "use client";
 
-import React, { useState } from "react";
-import { RacingLightsOverlay } from "@/components/RacingLightsOverlay";
-import { CockpitPOV } from "@/components/CockpitPOV";
-import { RacingTrackView } from "@/components/RacingTrackView";
-import { PitwallView } from "@/components/PitwallView";
-import { ContactModal } from "@/components/ContactModal";
-import { ExecutiveView } from "@/components/ExecutiveView";
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ProfileBox } from "@/components/bento/ProfileBox";
+import { SkillsBox } from "@/components/bento/SkillsBox";
+import { ExperienceBox } from "@/components/bento/ExperienceBox";
+import { ProjectsBox } from "@/components/bento/ProjectsBox";
+import { ContactBox } from "@/components/bento/ContactBox";
+import { PillNav, TabId } from "@/components/PillNav";
+import { PitCrewCar } from "@/components/PitCrewCar";
+import { TelemetryBackground } from "@/components/TelemetryBackground";
+
+/** Shared enter/exit motion props — inline to avoid framer-motion v13 Variants type issues */
+const enter = { opacity: 1, y: 0, scale: 1 };
+const fromBelow = { opacity: 0, y: 12, scale: 0.99 };
+const toAbove = { opacity: 0, y: -8, scale: 0.99 };
+const tEnter = { duration: 0.28 };
+const tExit  = { duration: 0.18 };
+
+/** Stagger wrapper for reveal-on-tab-switch animation of child panels */
+const staggerParent = {
+  initial: {},
+  animate: { transition: { staggerChildren: 0.08 } },
+};
+const staggerChild = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+};
 
 export default function Home() {
-  // Application POV View State Machine
-  const [showIntro, setShowIntro] = useState<boolean>(true);
-  const [currentView, setCurrentView] = useState<"garage" | "track" | "pitwall" | "executive">("garage");
-  const [trackCategory, setTrackCategory] = useState<"projects" | "achievements" | "certifications">("projects");
-  const [pitwallTab, setPitwallTab] = useState<"skills" | "experience">("skills");
-  const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabId>("about");
 
-  // Navigation handlers
-  const handleNavigate = (view: "track" | "pitwall", section: string) => {
-    if (view === "track") {
-      setTrackCategory(section as "projects" | "achievements" | "certifications");
-      setCurrentView("track");
-    } else if (view === "pitwall") {
-      setPitwallTab(section as "skills" | "experience");
-      setCurrentView("pitwall");
-    }
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const handleReturnToGarage = () => {
-    setCurrentView("garage");
-  };
-
-  const handleToggleExecutive = () => {
-    setCurrentView(currentView === "executive" ? "garage" : "executive");
-  };
+  if (!mounted) return null;
 
   return (
-    <main className="relative min-h-screen bg-[#08090C] text-slate-100 selection:bg-[#E10600] selection:text-white overflow-x-hidden">
-      
-      {/* 1. Full-Screen 5-Red-Lights Overlay on Initial Entry */}
-      {showIntro && (
-        <RacingLightsOverlay onComplete={() => setShowIntro(false)} />
-      )}
+    <main className="min-h-screen bg-black text-white p-4 md:p-8 pb-28 relative overflow-hidden flex items-center justify-center">
+      {/* Full-screen interactive telemetry background */}
+      <TelemetryBackground />
+      {/* Global Noise Overlay */}
+      <div className="bg-noise" />
 
-      {/* 2. Main View State Switching */}
-      {currentView === "garage" && (
-        <CockpitPOV
-          onNavigate={handleNavigate}
-          onOpenContact={() => setIsContactOpen(true)}
-          onToggleExecutive={handleToggleExecutive}
-        />
-      )}
+      {/* Tab Content */}
+      <div className="w-full max-w-5xl mx-auto z-10">
+        <AnimatePresence mode="wait">
 
-      {currentView === "track" && (
-        <RacingTrackView
-          category={trackCategory}
-          onReturnToGarage={handleReturnToGarage}
-        />
-      )}
-
-      {currentView === "pitwall" && (
-        <PitwallView
-          initialTab={pitwallTab}
-          onReturnToGarage={handleReturnToGarage}
-        />
-      )}
-
-      {currentView === "executive" && (
-        <div className="relative">
-          {/* Top Bar for Executive View with Return to Cockpit button */}
-          <div className="fixed top-4 left-4 z-50">
-            <button
-              onClick={handleReturnToGarage}
-              className="bg-[#E10600] hover:bg-[#FF1801] text-white px-4 py-2 rounded-xl text-xs font-racing font-bold tracking-wider shadow-xl transition-transform active:scale-95"
+          {activeTab === "about" && (
+            <motion.div
+              key="about"
+              variants={staggerParent}
+              initial="initial"
+              animate="animate"
+              exit={toAbove}
+              transition={tEnter}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[minmax(300px,auto)]"
             >
-              ➔ RETURN TO COCKPIT POV
-            </button>
-          </div>
-          <ExecutiveView />
-        </div>
-      )}
+              <motion.div variants={staggerChild}><ProfileBox /></motion.div>
+              <motion.div variants={staggerChild}><ExperienceBox /></motion.div>
+            </motion.div>
+          )}
 
-      {/* 3. Global Accessible Contact Popup Modal */}
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-      />
+          {activeTab === "skills" && (
+            <motion.div
+              key="skills"
+              initial={fromBelow}
+              animate={enter}
+              exit={toAbove}
+              transition={tEnter}
+              className="max-w-xl mx-auto min-h-[400px]"
+            >
+              <SkillsBox />
+            </motion.div>
+          )}
 
+          {activeTab === "projects" && (
+            <motion.div
+              key="projects"
+              initial={fromBelow}
+              animate={enter}
+              exit={toAbove}
+              transition={tEnter}
+              className="min-h-[400px]"
+            >
+              <ProjectsBox />
+            </motion.div>
+          )}
+
+          {activeTab === "contact" && (
+            <motion.div
+              key="contact"
+              initial={fromBelow}
+              animate={enter}
+              exit={toAbove}
+              transition={tExit}
+              className="max-w-sm mx-auto min-h-[400px]"
+            >
+              <ContactBox />
+            </motion.div>
+          )}
+
+        </AnimatePresence>
+      </div>
+
+      {/* Floating Pill Navbar */}
+      <PillNav activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* Interactive pit-crew car */}
+      <PitCrewCar />
     </main>
   );
 }

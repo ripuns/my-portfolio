@@ -1,65 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=JetBrains+Mono:wght@300;400;500;700&family=Orbitron:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #08090C;
-  --foreground: #F8FAFC;
-  --f1-red: #E10600;
-  --f1-red-hover: #FF1801;
-  --f1-cyan: #00F5D4;
-  --f1-gold: #FFD166;
-  --f1-dark: #0D0E15;
-  --f1-card: #13141E;
-  --f1-border: #232536;
+  --bg-color: #050505;
+  --fg-color: #e2e8f0;
+  --accent-color: #E10600; /* F1 race red */
+  --accent-hover: #ff1e0d;
+  --panel-bg: rgba(15, 17, 21, 0.6);
+  --panel-border: rgba(30, 41, 59, 0.7);
+  --noise-opacity: 0.04;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  font-family: var(--font-grotesk), 'Space Grotesk', sans-serif;
   overflow-x: hidden;
 }
 
-.font-racing {
-  font-family: 'Orbitron', 'Chakra Petch', sans-serif;
-}
-
 .font-telemetry {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
 }
 
-/* Carbon Fiber Pattern Background */
-.bg-carbon {
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(225, 6, 0, 0.03) 0%, transparent 60%),
-    linear-gradient(27deg, #10111A 5px, transparent 5px) 0 5px,
-    linear-gradient(207deg, #10111A 5px, transparent 5px) 10px 0px,
-    linear-gradient(27deg, #151622 5px, transparent 5px) 0px 10px,
-    linear-gradient(207deg, #151622 5px, transparent 5px) 10px 5px,
-    linear-gradient(90deg, #0A0B10 10px, transparent 10px),
-    linear-gradient(#0D0E15 25%, #08090C 25%, #08090C 50%, #0D0E15 50%, #0D0E15 75%, #08090C 75%, #08090C 100%);
-  background-size: 20px 20px;
+.font-primary {
+  font-family: var(--font-grotesk), 'Space Grotesk', sans-serif;
 }
 
-/* F1 Curbs & Chequered Patterns */
-.curb-pattern {
-  background: repeating-linear-gradient(
-    -45deg,
-    #E10600,
-    #E10600 12px,
-    #FFFFFF 12px,
-    #FFFFFF 24px
-  );
+.font-display {
+  font-family: var(--font-syne), 'Syne', sans-serif;
 }
 
-.curb-pattern-subtle {
-  background: repeating-linear-gradient(
-    -45deg,
-    rgba(225, 6, 0, 0.35),
-    rgba(225, 6, 0, 0.35) 8px,
-    rgba(255, 255, 255, 0.15) 8px,
-    rgba(255, 255, 255, 0.15) 16px
-  );
+/* Static Noise Overlay */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Full-screen telemetry grid background — pure CSS, transform-only animation (cheap on any GPU) */
+.bg-telemetry-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(225, 6, 0, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 6, 0, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: grid-drift 40s linear infinite;
+  mask-image: radial-gradient(ellipse 120% 100% at 50% 40%, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 40%, #000 55%, transparent 100%);
+}
+
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 48px 96px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-telemetry-grid {
+    animation: none;
+  }
+}
+
+/* Bento Box Container Styling */
+.bento-panel {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.bento-panel:hover {
+  border-color: rgba(225, 6, 0, 0.3);
 }
 
 /* Scanline Overlay for Telemetry feel */
@@ -68,48 +88,29 @@ body {
     to bottom,
     rgba(255,255,255,0),
     rgba(255,255,255,0) 50%,
-    rgba(0, 245, 212, 0.02) 50%,
-    rgba(0, 245, 212, 0.02)
+    rgba(225, 6, 0, 0.03) 50%,
+    rgba(225, 6, 0, 0.03)
   );
   background-size: 100% 4px;
-}
-
-/* Glowing Neon Elements */
-.glow-red {
-  box-shadow: 0 0 25px rgba(225, 6, 0, 0.45);
-}
-
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.35);
-}
-
-.glow-gold {
-  box-shadow: 0 0 20px rgba(255, 209, 102, 0.4);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #08090C;
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #E10600;
+  background: rgba(30, 41, 59, 1);
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF1801;
+  background: var(--accent-color);
 }
 
-/* Skew styling for motorsport badges */
-.skew-f1 {
-  transform: skewX(-12deg);
-}
-
-.unskew {
-  transform: skewX(12deg);
+/* Hover glow for headline text (cheap CSS-only replacement for the old SVG turbulence filter) */
+.boil-text {
+  text-shadow: 0 0 18px rgba(225, 6, 0, 0.45);
+  transition: text-shadow 0.25s ease, color 0.2s;
 }
