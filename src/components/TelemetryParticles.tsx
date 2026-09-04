@@ -17,9 +17,9 @@ import { useEffect, useRef } from "react";
  * Everything runs in one rAF loop writing directly to canvas — no React
  * state/re-renders per frame. Pauses when the tab is hidden.
  */
-const INITIAL_COUNT_DESKTOP = 70;
-const INITIAL_COUNT_MOBILE = 28;
-const MAX_PARTICLES = 220; // hard safety ceiling only
+const INITIAL_COUNT_DESKTOP = 140;
+const INITIAL_COUNT_MOBILE = 55;
+const MAX_PARTICLES = 320; // hard safety ceiling only
 const MIN_RADIUS = 1.4;
 const MAX_RADIUS = 5;
 const LINK_DIST = 110;
