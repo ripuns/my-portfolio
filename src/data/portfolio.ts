@@ -9,8 +9,8 @@ export const profile = {
   phone: "+91 94613 90313",
   available: true,
   bio: [
-    "I'm a third-year BTech IT student at VIT Vellore (CGPA 8.58) who lives on the backend: NestJS microservices, PostgreSQL query plans, and event pipelines that have to survive 5,000+ concurrent users without lifting off the throttle.",
-    "As Senior Technical Executive at the Entrepreneurship Cell, I shipped full-stack platforms with 10+ APIs, JWT/RBAC auth, and CI/CD that cut deploy time by 25% — while holding 99.9% availability through peak event surges. Off the track, I work on AI: an LLM support pipeline on AWS Bedrock, scored with a hand-labelled 175-example eval harness.",
+    "I'm a final-year BTech IT student at VIT Vellore (CGPA 8.58) who lives on the backend: NestJS microservices, PostgreSQL query plans, and event pipelines that have to survive large no. of concurrent users without lifting off the throttle.",
+    "As Senior Technical Executive at the Entrepreneurship Cell, I contributed in shipping full-stack platforms with 10+ APIs, JWT/RBAC auth, and CI/CD that cut deploy time by 25% — while holding 99.9% availability through peak event surges. Off the track, I work on AI: an LLM-based customer support pipeline on AWS Bedrock, scored with a hand-labelled 175-example eval harness.",
     "I also hold a published patent application for SpineGuard, an AI + IoT posture-correction system, and a runner-up finish at HackBattle 2025 against 70+ teams. My happy place is where systems meet ML: observability, evals, and software that stays on the racing line.",
   ],
   stats: [
@@ -20,7 +20,7 @@ export const profile = {
     { label: "Hackathon teams outpaced", value: 70, suffix: "+" },
   ],
   socials: [
-    { label: "GitHub", handle: "@ripunxs", href: "https://github.com/ripunxs" },
+    { label: "GitHub", handle: "@ripuns", href: "https://github.com/ripuns" },
     { label: "LinkedIn", handle: "in/ripun-sethia", href: "https://www.linkedin.com/in/ripun-sethia" },
     { label: "Email", handle: "ripunsethia27@gmail.com", href: "mailto:ripunsethia27@gmail.com" },
     { label: "Phone", handle: "+91 94613 90313", href: "tel:+919461390313" },
@@ -31,7 +31,7 @@ export type Project = {
   id: string;
   title: string;
   year: string;
-  kind: "Backend" | "AI/ML" | "IoT" | "Full-Stack";
+  kind:  "Full-Stack" | "Backend" | "AI/ML" | "IoT";
   blurb: string;
   detail: string;
   stack: string[];

@@ -274,10 +274,10 @@ export function TvRigBack({ l }: { l: TvLayout }) {
           className="font-pixel tracking-wider text-[var(--tv-text)]"
           style={{ fontSize: narrow ? 12 : 18 }}
         >
-          RIPUN-TRON 3000
+          SONY TRINITRON 3000
         </span>
         {!narrow ? (
-          <span className="font-mono text-[13px] tracking-[0.2em] text-[var(--tv-text-mute)]">MODEL RS-27 • COLOR TV</span>
+          <span className="font-mono text-[13px] tracking-[0.2em] text-[var(--tv-text-mute)]">MODEL RS-27 • B/W TV</span>
         ) : (
           <span className="w-10" />
         )}
@@ -453,7 +453,7 @@ export function TvRigFront({
               </span>
             ))}
           </p>
-          <div
+          {/* <div
             aria-hidden="true"
             style={{
               width: rsSize * 2.14,
@@ -477,7 +477,7 @@ export function TvRigFront({
             }}
           >
             Ripun Sethia
-          </p>
+          </p>*/}
         </div>
 
         {/* VCR on-screen display */}

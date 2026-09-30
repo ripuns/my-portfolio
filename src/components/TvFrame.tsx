@@ -37,7 +37,7 @@ export function Bezel({
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500 shadow-[0_0_6px_rgba(239,68,68,0.9)]" />
           <span className="font-pixel text-[7px] tracking-wider text-[var(--tv-text)] sm:text-[8px]">
-            RIPUN-TRON 3000
+            SONY TRINITRON     - 3000
           </span>
           <span className="hidden font-mono text-[9px] tracking-widest text-[var(--tv-text-mute)] sm:inline">
             • SOLID STATE
@@ -45,7 +45,7 @@ export function Bezel({
         </div>
 
         <span className="hidden font-mono text-[10px] tracking-[0.2em] text-[var(--tv-text-mute)] md:block">
-          CH-03 • NTSC • AUTO TRACKING
+          NTSC • AUTO TRACKING
         </span>
 
         <div className="flex items-center gap-3">
