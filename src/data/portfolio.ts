@@ -128,62 +128,30 @@ export const projects: Project[] = [
   },
 ];
 
-export const skillGroups = [
+export const skillGroups: { id: string; name: string; icon: string; skills: string[] }[] = [
   {
+    id: "languages",
     name: "Languages",
-    short: "LANG",
-    compound: "SOFT",
-    compoundColor: "#e10600",
     icon: "{ }",
-    skills: [
-      { name: "TypeScript", code: "TS", level: 92, note: "daily driver" },
-      { name: "JavaScript (ES6+)", code: "JS", level: 90, note: "the chassis" },
-      { name: "C++", code: "C++", level: 88, note: "contest weapon" },
-      { name: "SQL", code: "SQL", level: 86, note: "query whisperer" },
-      { name: "Java", code: "JAV", level: 82, note: "OOP roots" },
-    ],
+    skills: ["TypeScript", "JavaScript (ES6+)", "C++", "SQL", "Java"],
   },
   {
+    id: "backend",
     name: "Backend & APIs",
-    short: "API",
-    compound: "MEDIUM",
-    compoundColor: "#ffd200",
     icon: "▸",
-    skills: [
-      { name: "REST APIs", code: "RST", level: 92, note: "clean contracts" },
-      { name: "NestJS", code: "NJS", level: 90, note: "pit-wall framework" },
-      { name: "Node.js", code: "NOD", level: 88, note: "event-loop enjoyer" },
-      { name: "JWT / RBAC", code: "AUT", level: 85, note: "access control" },
-      { name: "BullMQ", code: "BMQ", level: 72, note: "job-queue crew" },
-    ],
+    skills: ["REST APIs", "NestJS", "Node.js", "JWT / RBAC", "BullMQ"],
   },
   {
+    id: "data",
     name: "Data & Infra",
-    short: "DATA",
-    compound: "HARD",
-    compoundColor: "#c9c9c9",
     icon: "▤",
-    skills: [
-      { name: "PostgreSQL", code: "PG", level: 86, note: "index whisperer" },
-      { name: "Docker", code: "DCK", level: 80, note: "ships every lap" },
-      { name: "MongoDB", code: "MDB", level: 78, note: "flexible storage" },
-      { name: "Redis", code: "RDS", level: 74, note: "cache = DRS" },
-      { name: "AWS Bedrock", code: "BDR", level: 70, note: "LLM power unit" },
-    ],
+    skills: ["PostgreSQL", "Docker", "MongoDB", "Redis", "AWS Bedrock"],
   },
   {
+    id: "ai",
     name: "AI & Fundamentals",
-    short: "AI",
-    compound: "INTER",
-    compoundColor: "#00e5a0",
     icon: "∑",
-    skills: [
-      { name: "Python", code: "PY", level: 90, note: "ML & pipelines" },
-      { name: "DSA", code: "DSA", level: 89, note: "pure racecraft" },
-      { name: "LLMs", code: "LLM", level: 82, note: "prompt to podium" },
-      { name: "System Design", code: "SYS", level: 78, note: "aero for backends" },
-      { name: "scikit-learn", code: "SKL", level: 76, note: "forest specialist" },
-    ],
+    skills: ["Python", "DSA", "LLMs", "System Design", "scikit-learn"],
   },
 ];
 
@@ -259,7 +227,7 @@ export const terminalHelp: { cmd: string; desc: string }[] = [
   { cmd: "help", desc: "list available commands" },
   { cmd: "whoami", desc: "short bio" },
   { cmd: "projects", desc: "list projects" },
-  { cmd: "skills", desc: "top skills" },
+  { cmd: "skills", desc: "all skills by category" },
   { cmd: "contact", desc: "how to reach me" },
   { cmd: "neofetch", desc: "system info, but for a person" },
   { cmd: "theme <name>", desc: "paper | ink" },
