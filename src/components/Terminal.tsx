@@ -79,7 +79,7 @@ export default function Terminal({
         push([
           { text: "  email     ripunsethia27@gmail.com", cls: "text-ink" },
           { text: "  phone     +91 94613 90313", cls: "text-ink" },
-          { text: "  github    github.com/ripunxs", cls: "text-ink" },
+          { text: "  github    github.com/ripuns", cls: "text-ink" },
           { text: "  linkedin  in/ripun-sethia", cls: "text-ink" },
         ]);
         break;

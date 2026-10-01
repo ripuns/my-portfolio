@@ -31,8 +31,8 @@ export default function Footer({
             Let's build something <span className="font-serif font-normal italic">worth shipping.</span>
           </h2>
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-mute">
-            Backend internships, ML pipelines, or event platforms at scale — my
-            inbox is open and I reply fast.
+            I’m interested in backend internships and projects involving data, AI,
+            or APIs. Feel free to get in touch.
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">

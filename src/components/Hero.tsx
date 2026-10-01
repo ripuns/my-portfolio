@@ -3,10 +3,10 @@ import { profile } from "../data/portfolio";
 import { useClock, useHiScore, useMouseTilt, useRotatingText } from "../hooks";
 
 const WORDS = [
-  "that hold up at scale.",
-  "measured and traced.",
-  "with rewindable state.",
-  "reviewed, tested, shipped.",
+  "built with care.",
+  "measured and observed.",
+  "made easier to maintain.",
+  "reviewed, tested, and shipped.",
 ];
 
 const INVADER_A = [
@@ -66,9 +66,9 @@ export default function Hero({
           </p>
 
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-mute">
-            BTech IT at VIT Vellore (CGPA 8.58). NestJS microservices, PostgreSQL
-            query plans, and LLM pipelines evaluated properly — currently holding
-            99.9% availability for 5,000+ event users.
+            BTech IT at VIT Vellore (CGPA 8.58). I work with NestJS, PostgreSQL,
+            and LLM evaluation, and previously supported an event platform used by
+            more than 5,000 participants.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">

@@ -4,30 +4,30 @@ import { useCountUp, useReveal } from "../hooks";
 
 const NOW = [
   { label: "Reading", value: "Designing Data-Intensive Applications" },
-  { label: "Building", value: "ReplayDB event replay" },
-  { label: "Learning", value: "Bedrock + LLM evals" },
+  { label: "Building", value: "Backend and data projects" },
+  { label: "Learning", value: "LLM evaluation" },
 ];
 
 const ASK_ABOUT = [
-  "NestJS at scale",
+  "NestJS",
   "ReplayDB",
-  "SpineGuard patent",
+  "SpineGuard",
   "LLM evals",
   "E-Cell",
   "DSA prep",
 ];
 
 const ANSWERS: Record<string, string> = {
-  "NestJS at scale":
-    "Modular monolith first, microservices when the pain is real. ReplayDB runs NestJS + BullMQ + Postgres with OpenTelemetry tracing — the trick was making replay deterministic, not just fast.",
+  NestJS:
+    "I like starting with clear modules and only adding complexity when the problem calls for it. ReplayDB uses NestJS with PostgreSQL, Redis, BullMQ, and observability tooling.",
   ReplayDB:
-    "It records application events and rebuilds exact past states so you can rewind production. Think git reflog, but for your running backend.",
-  "SpineGuard patent":
-    "Arduino sensors → Python Random Forest → voice alerts when you slouch. Filed and published as a patent application.",
+    "It records application events and reconstructs earlier states, which helps developers investigate issues with more context.",
+  SpineGuard:
+    "It combines Arduino sensors, a Python Random Forest model, and voice alerts to provide posture feedback. The project has a filed and published patent application.",
   "LLM evals":
-    "175 hand-labelled examples, 72.6% intent accuracy. The unglamorous secret of LLM apps: the eval harness matters more than the prompt.",
+    "I built a hand-labelled 175-example set to measure intent classification, escalation decisions, and grounded response quality for a support workflow.",
   "E-Cell":
-    "5,000+ users hit our event platform at once. Indexing + caching held the line at 99.9% availability — and taught me strong opinions about connection pools.",
+    "At E-Cell VIT, I worked on server-side endpoints, indexing, full-stack features, and CI/CD for the event platform.",
   "DSA prep":
     "C++ for contests, Python for interviews. The second solution is always cleaner than the first.",
 };

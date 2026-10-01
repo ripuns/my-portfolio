@@ -131,7 +131,7 @@ function Modal({ p, onClose }: { p: Project; onClose: () => void }) {
 
           <div className="mt-7 flex flex-wrap gap-3 border-t border-line pt-6">
             <a
-              href="https://github.com/ripunxs"
+              href="https://github.com/ripuns"
               target="_blank"
               rel="noreferrer"
               className="pixel-btn rounded-md bg-ink px-5 py-2.5 text-[13px] font-medium text-base"
