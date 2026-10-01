@@ -9,15 +9,15 @@ export const profile = {
   phone: "+91 94613 90313",
   available: true,
   bio: [
-    "I'm a third-year BTech IT student at VIT Vellore (CGPA 8.58), interested in backend development, data systems, and practical AI applications. I enjoy the parts of software that quietly make everything else work: clear APIs, sensible database design, and the debugging trail that eventually explains why something broke at 2 a.m.",
+    "I'm a final-year BTech IT student at VIT Vellore, interested in backend development, data systems, and practical AI applications. I enjoy the parts of software that quietly make everything else work: clear APIs, sensible database design, and the debugging trail that eventually explains why something broke at 2 a.m.",
     "I worked as a Senior Technical Executive at the Entrepreneurship Cell, VIT, where I contributed to web platforms used by more than 5,000 event participants. My work included server-side endpoints, database indexing, full-stack features, and CI/CD. It was a good introduction to building for real users, coordinating with different teams, and learning that a small database improvement can save a surprising amount of stress.",
     "Outside that work, I like building projects that sit between software, data, and AI. ReplayDB explores event replay for investigating application issues; MediBook focuses on appointment scheduling; and my customer-support project uses an evaluation-first LLM workflow. I also built SpineGuard, an IoT posture-monitoring system that led to a filed and published patent application. I am still learning, still iterating, and usually happiest when a rough idea turns into something useful.",
   ],
   stats: [
-    { label: "Event users served", value: 5000, suffix: "+" },
-    { label: "Query throughput boost", value: 35, suffix: "%" },
+    { label: "Event users served", value: 2000, suffix: "+" },
     { label: "Support records pipelined", value: 2800000, suffix: "" },
-    { label: "HackBattle teams", value: 70, suffix: "+" },
+    { label: "Hackathon teams beaten", value: 70, suffix: "+" },
+    { label: "Fuel: F1, Pumping Iron & 80's Rock", value: 100, suffix: "%" }
   ],
   socials: [
     { label: "GitHub", handle: "@ripuns", href: "https://github.com/ripuns" },
@@ -125,19 +125,19 @@ export const skillGroups: { id: string; name: string; icon: string; skills: stri
     id: "backend",
     name: "Backend & APIs",
     icon: "▸",
-    skills: ["REST APIs", "NestJS", "Node.js", "JWT / RBAC", "BullMQ"],
+    skills: ["REST APIs", "NestJS", "Node.js", "Next.js", "Flask"],
   },
   {
     id: "data",
     name: "Data & Infra",
     icon: "▤",
-    skills: ["PostgreSQL", "Docker", "MongoDB", "Redis", "AWS Bedrock"],
+    skills: ["PostgreSQL", "Docker", "MongoDB", "Redis", "AWS"],
   },
   {
     id: "ai",
     name: "AI & Fundamentals",
     icon: "∑",
-    skills: ["Python", "DSA", "LLMs", "System Design", "scikit-learn"],
+    skills: ["Python", "DSA", "LLMs", "System Design", "ML"],
   },
 ];
 
@@ -145,7 +145,7 @@ export const timeline = [
   {
     date: "2026 · Now",
     title: "BTech IT — VIT Vellore",
-    org: "Third year · CGPA 8.58 · graduating July 2027",
+    org: "Final year · CGPA 8.58 · graduating July 2027",
     body: "Currently balancing coursework with personal projects in backend development, data systems, and AI. Open to internships where I can learn from a strong engineering team and contribute meaningfully.",
     tags: ["VIT", "CGPA 8.58", "Class of '27"],
   },

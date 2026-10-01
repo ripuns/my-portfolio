@@ -52,7 +52,7 @@ export default function Hero({
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute">
             <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse bg-ink align-middle" />
-            Available for internships · Class of 2027
+            Available for Work · Class of 2027
           </p>
 
           <h1 className="mt-6 text-[clamp(2.9rem,7vw,4.9rem)] font-semibold leading-[1.0] tracking-[-0.03em] text-ink">
@@ -66,9 +66,9 @@ export default function Hero({
           </p>
 
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-mute">
-            BTech IT at VIT Vellore (CGPA 8.58). I work with NestJS, PostgreSQL,
-            and LLM evaluation, and previously supported an event platform used by
-            more than 5,000 participants.
+            Engineering distributed backends and reliable AI workflows. Built platforms serving thousands of 
+            concurrent users, pipelined 2.8M+ data records, and author of a published healthcare patent. 
+            Studying IT at VIT Vellore.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
