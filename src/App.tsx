@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import CommandPalette from "./components/CommandPalette";
 import Terminal from "./components/Terminal";
 import OrbGallery from "./components/OrbGallery";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import { useActiveSection, useKonami, useTheme } from "./hooks";
 
 const SECTIONS = ["hero", "about", "skills", "projects", "lab", "journey", "guestbook"];
@@ -352,9 +352,12 @@ export default function App() {
       />
     );
   }
-  <Analytics/>
+  
 
-  return <SiteApp />;
+  return <>
+  <Analytics/>
+  <SiteApp/>
+  </>;
 }
 
 function StaticBurst() {
